@@ -7,6 +7,7 @@ export const shortUrl = async (req, res) => {
 
   const shortUrl = `http://localhost:3000/${shortCode}`;
 
+  
   // save to db
   const newUrl = new Url({
     shortCode,

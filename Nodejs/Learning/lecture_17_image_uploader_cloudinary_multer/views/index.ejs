@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Welcome to the file uploader
+    <div class="container">
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <input type="file" name="file" id="file-input" />
+          <div class="form-group">
+            <input type="submit" value="Upload" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div id="uploaded-image-container">
+      <% if(url) {%>
+
+      <h2>✅ File Uploaded</h2>
+      <img src="<%= url %>" alt="Uploaded Image" />
+      <%} %>
+    </div>
+  </body>
+</html>
