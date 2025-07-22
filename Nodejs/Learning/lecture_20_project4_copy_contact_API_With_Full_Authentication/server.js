@@ -30,7 +30,7 @@ app.use("/api/contact", contactRouter);
 // connecting to db
 mongoose
   .connect(
-    "mongodb+srv://utkarsh:Swami%40%4012345@cluster0.cocjlrf.mongodb.net/",
+    "mongodb+srv://utkarsh:Swami%40%40123@cluster0.wwrvykq.mongodb.net/",
     { dbname: "user_DataBase" }
   )
   .then(() => {
