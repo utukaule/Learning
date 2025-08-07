@@ -1,8 +1,10 @@
 import RestaurantCard from "./RestaurantCard";
 import "./Body.css";
+import { useState } from "react";
+// whenever the state variable updates react re-renders the component
 
 const Body = () => {
-  let listOfRestaurants = [
+  const [listOfRestaurants, setListOfRestaurants] = useState([
     {
       info: {
         id: "506982",
@@ -1620,7 +1622,8 @@ const Body = () => {
         type: "WEBLINK",
       },
     },
-  ];
+  ])
+
 
   return (
     <div className="body">
@@ -1628,10 +1631,8 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            listOfRestaurants = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4.6
-            );
-            console.log(listOfRestaurants);
+            let filteredData = listOfRestaurants.filter((res)=>res.info.avgRating > 4.6)
+            setListOfRestaurants(filteredData)
           }}
         >
           Top Restaurants
