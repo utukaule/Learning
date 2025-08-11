@@ -4,7 +4,7 @@ import {  SWIGGY_IMAGE_PATH } from "../utilities/constants";
 
 const RestaurantCard = (props) => {
   const {data} = props
-  console.log("this is props",props)
+  // console.log("this is props",props)
   const {id,name,cloudinaryImageId,cuisines,avgRating,costForTwo,sla} = data.info
  
   
