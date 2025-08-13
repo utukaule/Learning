@@ -1,8 +1,21 @@
+.filter{
+    display: flex;
+
+}
+.search{
+    padding: 5px;
+    margin: 10px;
+}
+
+.search_btn{
+    margin-left: 10px;
+    
+}
 
 .filter-btn{
     cursor: pointer;
-    padding: 5px;
-    margin: 10px;
+    padding: 1px;
+    margin: 15px 0px;
 }
 
 .res-container{
