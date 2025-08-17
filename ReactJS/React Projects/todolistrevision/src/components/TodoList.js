@@ -18,20 +18,30 @@ const TodoList = () => {
   };
 
   const toggleHandle = (id) => {
-    setTodoList(
-      todoList.map((item) => {
-        if (item.id == id) {
-          return {
-            ...item,
-            completed: !item.completed,
-          };
-        }
-      })
-    );
+  setTodoList(todoList.map((item)=>{
+    if(item.id == id){
+      return{
+        ...item,
+        completed: !item.completed
+      }
+    }
+  }))
+
+    // setTodoList(
+    //   todoList.map((item) => {
+    //     if (item.id == id) {
+    //       return {
+    //         ...item,
+    //         completed: !item.completed,
+    //       };
+    //     }
+    //   })
+    // );
   };
 
   const delelHandle = (id) => {
-     setTodoList(todoList.filter((item) => item.id   !== id));
+    setTodoList(todoList.filter((item) => item.id !== id));
+    // setTodoList(todoList.filter((item)=>item.id !== id))
   };
 
   return (
@@ -61,7 +71,7 @@ const TodoList = () => {
                 />
                 <span className={item.completed ? "dash" : ""}>
                   {item.text}
-                </span>{" "}
+                </span>
                 <button onClick={() => delelHandle(item.id)}>Delete</button>
               </li>
             </ul>
