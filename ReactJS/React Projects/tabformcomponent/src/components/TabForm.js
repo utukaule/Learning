@@ -57,17 +57,24 @@ const TabForm = () => {
     },
   ];
 
+  // loads each component
   const ActiveTabComponent = tabs[activeTab].component;
+
+  // go to the next component
   const handleNextClick = () => {
     if (tabs[activeTab].validate()) {
       setActiveTab((prev) => prev + 1);
     }
   };
+
+  // go to the previous component
   const handlePrevClick = () => {
     if (tabs[activeTab].validate()) {
       setActiveTab((prev) => prev - 1);
     }
   };
+
+  // submit button
   const handleSubmitClick = () => {
     // make api call
     console.log(data);
