@@ -1,13 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Gliroy";
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
 
-    
+      #main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: #222;
+      }
+
+      /* h1{
+            color: black;
+            font: 10rem;
+            font-weight: 300;
+            user-select: none;
+        } */
+
+      /* ✅file upload input hide */
+      /* input{
+            display: none
+         } */
+
+      /* input and form */
+      input {
+        display: block;
+        margin: 10px;
+      }
+
+      #btn {
+        padding: 12px 22px;
+        background-color: rgb(41, 143, 114);
+        color: white;
+        border-radius: 5px;
+        font-weight: 600;
+      }
+
+      #btn:hover {
+        background-color: rgb(21, 124, 95);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <!-- ✅below h1 is used for window project  -->
+      <!-- <h1></h1> -->
+
+      <!-- ✅file upload
+         <input id="fileInput" type="file">
+         <div id="btn">
+            upload File
+         </div> -->
+
+      <form action="">
+        <input type="text" placeholder="name" />
+        <input type="text" placeholder="age" />
+        <input type="text" placeholder="email" />
+        <input type="text" placeholder="link" />
+        <input type="submit" />
+      </form>
+    </div>
 
     <!-- commented code uncomment and uncomment in script to run -->
     <!-- <h1>Click</h1>
@@ -20,5 +89,5 @@
     </select>
     <input type="text"  /> -->
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
