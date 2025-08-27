@@ -1,0 +1,205 @@
+:root {
+  --bg: #0b0f14;
+  --card: #121826;
+  --muted: #98a2b3;
+  --text: #eef2ff;
+  --accent: #7c3aed; /* focus rings */
+  --ok: #22c55e; /* valid */
+  --warn: #f59e0b; /* medium strength */
+  --bad: #ef4444; /* invalid */
+  --border: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  background: radial-gradient(
+      1200px 700px at 80% -20%,
+      #1f1147 0%,
+      transparent 60%
+    ),
+    var(--bg);
+  color: var(--text);
+}
+
+.wrapper {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+form {
+  width: 100%;
+  max-width: 520px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 1.6rem;
+  letter-spacing: 0.2px;
+}
+
+.field {
+  margin: 16px 0;
+}
+label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: #dbe4ff;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #0f1524;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input::placeholder {
+  color: #6b7280;
+}
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* valid / invalid states you can toggle by JS on .field */
+.field.valid input {
+  border-color: color-mix(in srgb, var(--ok) 70%, #000);
+}
+.field.invalid input {
+  border-color: color-mix(in srgb, var(--bad) 70%, #000);
+}
+
+.hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.error {
+  display: block;
+  min-height: 1em; /* keeps layout stable when empty */
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--bad);
+}
+
+/* password row (input + show/hide) */
+.password-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.password-row input {
+  flex: 1;
+}
+button.ghost {
+  border: 1px solid var(--border);
+  background: #0f1524;
+  color: #cbd5e1;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+button.ghost:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* strength meter */
+.meter {
+  margin-top: 10px;
+  height: 8px;
+  width: 100%;
+  background: #0c1220;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.meter .bar {
+  height: 100%;
+  width: 0%;
+  background: var(--bad); /* default weak */
+  transition: width 0.25s ease, background-color 0.25s ease;
+}
+/* you can set classes on #strengthBar: .weak/.medium/.strong/.very-strong */
+.bar.medium {
+  background: var(--warn);
+}
+.bar.strong {
+  background: var(--ok);
+}
+.bar.very-strong {
+  background: linear-gradient(90deg, var(--ok), #10b981);
+}
+
+/* requirements list */
+.requirements {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+.requirements li {
+  margin: 4px 0;
+  list-style: "✗ ";
+  transition: color 0.2s, list-style 0.2s;
+}
+.requirements li.ok {
+  color: var(--ok);
+  list-style: "✓ ";
+}
+
+/* submit button */
+button[type="submit"] {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #7c3aed, #4f46e5);
+  color: white;
+  transition: filter 0.2s, opacity 0.2s;
+}
+button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+button[type="submit"]:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+/* form-level message */
+.form-msg {
+  min-height: 1.2em;
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #d1fae5; /* you can toggle red/green via JS */
+}
+
+#resultMessage {
+  color: greenyellow;
+}
