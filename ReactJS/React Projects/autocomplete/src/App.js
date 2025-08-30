@@ -10,18 +10,24 @@ function App() {
   const [cache, setCache] = useState({});
 
   const fetchDate = async () => {
-    if (cache[input]) {
-      console.log("Cache return", input);
-      setRecipes(cache[input]);
-      return;
+    try {
+      if (cache[input]) {
+        console.log("Cache return", input);
+        setRecipes(cache[input]);
+        return;
+      }
+      console.log("api is call");
+      const data = await fetch(
+        "https://dummyjson.com/recipes/search?q=" + input
+      );
+      const json = await data.json();
+      // console.log(json.recipes);
+      setRecipes(json?.recipes);
+      setCache((prev) => ({ ...prev, [input]: json?.recipes }));
+      // console.log("this is menu", recipes);
+    } catch (error) {
+      console.log(error);
     }
-    console.log("api is call");
-    const data = await fetch("https://dummyjson.com/recipes/search?q=" + input);
-    const json = await data.json();
-    // console.log(json.recipes);
-    setRecipes(json?.recipes);
-    setCache((prev) => ({ ...prev, [input]: json?.recipes }));
-    // console.log("this is menu", recipes);
   };
   useEffect(() => {
     const timer = setTimeout(() => {
