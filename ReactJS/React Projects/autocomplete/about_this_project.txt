@@ -1,0 +1,8 @@
+auto complete is completed 
+main feature 
+1. calling api dummyjson
+2. useState to store the result 
+3. show resultes if input is in focus
+4. cache the input field in state call cache so while using back space the value will be cross checked with cache to reduce re-rendaring 
+5. using setTimeout and reture (unmount or in this case reset)
+this will reduce the api call to improve the performance
