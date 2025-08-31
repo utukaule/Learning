@@ -1,8 +1,16 @@
+localStorage.clear()
 const employees = [
   {
     id: 1,
+    firstName: "Rahul",
     email: "employee1@example.com",
     password: "123",
+    taskCount: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 0,
+    },
     tasks: [
       {
         title: "Prepare sales report",
@@ -39,8 +47,15 @@ const employees = [
   },
   {
     id: 2,
+    firstName: "Sneha",
     email: "employee2@example.com",
     password: "123",
+    taskCount: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 1,
+    },
     tasks: [
       {
         title: "Update website",
@@ -86,8 +101,15 @@ const employees = [
   },
   {
     id: 3,
+    firstName: "Amit",
     email: "employee3@example.com",
     password: "123",
+    taskCount: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 0,
+    },
     tasks: [
       {
         title: "Inventory check",
@@ -123,8 +145,15 @@ const employees = [
   },
   {
     id: 4,
+    firstName: "Priya",
     email: "employee4@example.com",
     password: "123",
+    taskCount: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 0,
+    },
     tasks: [
       {
         title: "HR orientation",
@@ -161,8 +190,15 @@ const employees = [
   },
   {
     id: 5,
+    firstName: "Karan",
     email: "employee5@example.com",
     password: "123",
+    taskCount: {
+      active: 2,
+      newTask: 1,
+      completed: 1,
+      failed: 1,
+    },
     tasks: [
       {
         title: "Prepare presentation",
@@ -208,6 +244,8 @@ const employees = [
   },
 ];
 
+
+
 const admin = [
   {
     id: 1,
@@ -220,7 +258,9 @@ export const setLocalStorage = () => {
   localStorage.setItem("employees", JSON.stringify(employees));
   localStorage.setItem("admin", JSON.stringify(admin));
 };
+
 export const getLocalStorage = () => {
- const employees = JOSN.parse(localStorage.getItem('employees'))
- console.log(JSON.parse(data))
+ const employees = JSON.parse(localStorage.getItem('employees'))
+ const admin = JSON.parse(localStorage.getItem('admin'))
+ return {employees,admin}
 }
