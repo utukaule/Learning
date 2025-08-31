@@ -1,0 +1,6 @@
+Employee management system
+
+vite
+context api
+auth
+Tailwind css

@@ -1,0 +1,226 @@
+const employees = [
+  {
+    id: 1,
+    email: "employee1@example.com",
+    password: "123",
+    tasks: [
+      {
+        title: "Prepare sales report",
+        description: "Compile the monthly sales report for management review.",
+        date: "2025-09-01",
+        category: "Reports",
+        active: true,
+        newTask: true,
+        completed: false,
+        failed: false,
+      },
+      {
+        title: "Client follow-up",
+        description:
+          "Call and follow up with Client A regarding pending invoice.",
+        date: "2025-09-02",
+        category: "Client",
+        active: false,
+        newTask: false,
+        completed: true,
+        failed: false,
+      },
+      {
+        title: "Team meeting",
+        description: "Weekly sync-up meeting with the team.",
+        date: "2025-09-03",
+        category: "Meetings",
+        active: true,
+        newTask: false,
+        completed: false,
+        failed: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    email: "employee2@example.com",
+    password: "123",
+    tasks: [
+      {
+        title: "Update website",
+        description: "Fix homepage banner and update product listings.",
+        date: "2025-09-01",
+        category: "Development",
+        active: true,
+        newTask: true,
+        completed: false,
+        failed: false,
+      },
+      {
+        title: "Bug fixing",
+        description: "Resolve login page session timeout issue.",
+        date: "2025-09-02",
+        category: "Development",
+        active: false,
+        newTask: false,
+        completed: true,
+        failed: false,
+      },
+      {
+        title: "Design review",
+        description: "Review new design mockups from the design team.",
+        date: "2025-09-04",
+        category: "Design",
+        active: true,
+        newTask: false,
+        completed: false,
+        failed: false,
+      },
+      {
+        title: "Documentation",
+        description: "Update API documentation for new endpoints.",
+        date: "2025-09-05",
+        category: "Documentation",
+        active: false,
+        newTask: false,
+        completed: false,
+        failed: true,
+      },
+    ],
+  },
+  {
+    id: 3,
+    email: "employee3@example.com",
+    password: "123",
+    tasks: [
+      {
+        title: "Inventory check",
+        description: "Perform weekly stock verification in warehouse.",
+        date: "2025-09-01",
+        category: "Operations",
+        active: true,
+        newTask: true,
+        completed: false,
+        failed: false,
+      },
+      {
+        title: "Vendor meeting",
+        description: "Discuss supply terms with Vendor X.",
+        date: "2025-09-03",
+        category: "Meetings",
+        active: true,
+        newTask: false,
+        completed: false,
+        failed: false,
+      },
+      {
+        title: "Shipment tracking",
+        description: "Track pending shipments from Supplier Y.",
+        date: "2025-09-04",
+        category: "Logistics",
+        active: false,
+        newTask: false,
+        completed: true,
+        failed: false,
+      },
+    ],
+  },
+  {
+    id: 4,
+    email: "employee4@example.com",
+    password: "123",
+    tasks: [
+      {
+        title: "HR orientation",
+        description: "Conduct orientation for new joiners.",
+        date: "2025-09-01",
+        category: "HR",
+        active: true,
+        newTask: true,
+        completed: false,
+        failed: false,
+      },
+      {
+        title: "Payroll processing",
+        description: "Complete payroll for August 2025.",
+        date: "2025-09-02",
+        category: "Finance",
+        active: false,
+        newTask: false,
+        completed: true,
+        failed: false,
+      },
+      {
+        title: "Policy update",
+        description:
+          "Draft updates to leave policy and circulate for approval.",
+        date: "2025-09-05",
+        category: "HR",
+        active: true,
+        newTask: false,
+        completed: false,
+        failed: false,
+      },
+    ],
+  },
+  {
+    id: 5,
+    email: "employee5@example.com",
+    password: "123",
+    tasks: [
+      {
+        title: "Prepare presentation",
+        description: "Make slides for quarterly business review.",
+        date: "2025-09-01",
+        category: "Reports",
+        active: true,
+        newTask: true,
+        completed: false,
+        failed: false,
+      },
+      {
+        title: "Social media post",
+        description: "Schedule LinkedIn and Twitter posts for product launch.",
+        date: "2025-09-03",
+        category: "Marketing",
+        active: false,
+        newTask: false,
+        completed: true,
+        failed: false,
+      },
+      {
+        title: "Ad campaign",
+        description: "Set up Google Ads campaign for September.",
+        date: "2025-09-04",
+        category: "Marketing",
+        active: true,
+        newTask: false,
+        completed: false,
+        failed: false,
+      },
+      {
+        title: "Market research",
+        description: "Analyze competitor strategies for pricing.",
+        date: "2025-09-06",
+        category: "Research",
+        active: false,
+        newTask: false,
+        completed: false,
+        failed: true,
+      },
+    ],
+  },
+];
+
+const admin = [
+  {
+    id: 1,
+    email: "admin@example.com",
+    password: "123",
+  },
+];
+
+export const setLocalStorage = () => {
+  localStorage.setItem("employees", JSON.stringify(employees));
+  localStorage.setItem("admin", JSON.stringify(admin));
+};
+export const getLocalStorage = () => {
+ const employees = JOSN.parse(localStorage.getItem('employees'))
+ console.log(JSON.parse(data))
+}
