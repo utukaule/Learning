@@ -8,7 +8,9 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [searchText, setSearchText] = useState("")
+  const [filterRestaurant, setFilterRestaurant] = useState([])
+  const [searchText, setSearchText] = useState("");
+  console.log("rerender");
   useEffect(() => {
     fetchData();
   }, []);
@@ -25,6 +27,7 @@ const Body = () => {
     setListOfRestaurants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setFilterRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
   };
 
   return listOfRestaurants === "" ? (
@@ -38,11 +41,20 @@ const Body = () => {
             className="search-box"
             placeholder="Search Restaurant"
             value={searchText}
-            onChange={(e)=>setSearchText(e.target.value)}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-          <button className="search_btn" 
-            onClick={()=>{console.log(searchText)}}
-          >Search</button>
+          <button
+            className="search_btn"
+            onClick={() => {
+              console.log(searchText);
+              const filteredRestaurants = listOfRestaurants.filter((e) =>
+                e.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setFilterRestaurant(filteredRestaurants)
+            }}
+          >
+            Search
+          </button>
         </div>
         <button
           className="filter-btn"
@@ -57,7 +69,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurants.map((restaurant) => {
+        {filterRestaurant.map((restaurant) => {
           return <RestaurantCard key={restaurant.info.id} data={restaurant} />;
         })}
       </div>
