@@ -1,7 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { bookBaseUrl } from "../axiosInstance";
-import { useEffect } from "react";
-
 const Home = () => {
   const [bookForm, setBookForm] = useState({
     BookName: "",
@@ -11,8 +9,6 @@ const Home = () => {
     PublishDate: "",
     Id: "",
   });
-  const [bookList, setBooklist] = useState([]);
-  const [isUpdating, setIsUpdating] = useState(false);
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setBookForm((prev) => ({
@@ -20,99 +16,30 @@ const Home = () => {
       [name]: value,
     }));
   };
-  console.log("bookForm:", bookForm);
 
-  const handleSubmit = async () => {
-    try {
-      if (!isUpdating) {
-        if (
-          !bookForm.BookName ||
-          !bookForm.BookTitle ||
-          !bookForm.Author ||
-          !bookForm.PublishDate ||
-          !bookForm.SellingPrice
-        ) {
-          alert("All fields are compulsory!");
-        }
-         
-        if (data?.success) {
-          alert(data?.message);
-          getAllBookList();
-        }
-        setBookForm({
-          BookName: "",
-          BookTitle: "",
-          Author: "",
-          SellingPrice: "",
-          PublishDate: "",
-          Id: "",
-        });
-        console.log("data is submitted", data);
-      } else {
-        const { data } = await bookBaseUrl.put("/updateBook", bookForm);
-        if (data?.success) {
-          alert(data?.message);
-          getAllBookList();
-        }
-        setBookForm({
-          BookName: "",
-          BookTitle: "",
-          Author: "",
-          SellingPrice: "",
-          PublishDate: "",
-          Id: data?._id,
-        });
-        setIsUpdating(false);
-        console.log("data is submitted", data);
-      }
-    } catch (error) {
-      console.log("error while sending the data", error);
+ const handleSubmit = async () => {
+  console.log("clicked");
+  if (
+    !bookForm.BookName ||
+    !bookForm.BookTitle ||
+    !bookForm.Author ||
+    !bookForm.PublishDate ||
+    !bookForm.SellingPrice
+  ) {
+    alert("All fields are compulsory!");
+    return; // Prevent further execution
+  }
+
+  try {
+    const { data } = await bookBaseUrl.post("/addbook", bookForm);
+    if (data?.success) {
+      alert(data?.message);
     }
-  };
-
-  // get all books list
-
-  const getAllBookList = async () => {
-    try {
-      const { data } = await bookBaseUrl.get("booklist");
-      setBooklist(data?.BookList);
-      console.log("booklist", data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getAllBookList();
-  }, []);
-
-  // delete book
-
-  const handleDelete = async (id) => {
-    try {
-      const { data } = await bookBaseUrl?.post("deletebook", { Id: id });
-      if (data?.success) {
-        alert(data.message);
-        getAllBookList();
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  // updating books
-  const handleUpdate = (data) => {
-    setBookForm({
-      BookName: data?.BookName,
-      BookTitle: data?.BookTitle,
-      Author: data?.Author,
-      SellingPrice: data?.SellingPrice,
-      PublishDate: data?.PublishDate,
-      Id: data?._id,
-    });
-    setIsUpdating(true);
-  };
-
+  } catch (error) {
+    console.log("error while sending the data", error);
+    alert("Failed to submit. Please try again.");
+  }
+};
   return (
     <div className="w-full px-5 min-h-[calc(100vh - 60px)]">
       {/* input fields */}
@@ -211,41 +138,17 @@ const Home = () => {
               </tr>
             </thead>
             <tbody className=" bg-white divide-y divide-gray-200">
-              {bookList.map((book, idex) => {
-                return (
-                  <tr className="hover:bg-gray-200">
-                    <td className="px-6 py-3 whitespace-nowrap">
-                      {book.BookName}
-                    </td>
-                    <td className="px-6 py-3 whitespace-nowrap">
-                      {book.BookTitle}
-                    </td>
-                    <td className="px-6 py-3 whitespace-nowrap">
-                      {book.Author}
-                    </td>
-                    <td className="px-6 py-3 whitespace-nowrap">
-                      {book.SellingPrice}
-                    </td>
-                    <td className="px-6 py-3 whitespace-nowrap">
-                      {book.PublishDate}
-                    </td>
-                    <td className="px-6 py-3 whitespace-nowrap text-left">
-                      <span
-                        className=" cursor-pointer me-2"
-                        onClick={() => handleDelete(book._id)}
-                      >
-                        ❌
-                      </span>
-                      <span
-                        className=" mx-2 cursor-pointer"
-                        onClick={() => handleUpdate(book)}
-                      >
-                        ✒️
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
+              <tr className="hover:bg-gray-200">
+                <td className="px-6 py-3 whitespace-nowrap"></td>
+                <td className="px-6 py-3 whitespace-nowrap"></td>
+                <td className="px-6 py-3 whitespace-nowrap"></td>
+                <td className="px-6 py-3 whitespace-nowrap"></td>
+                <td className="px-6 py-3 whitespace-nowrap"></td>
+                <td className="px-6 py-3 whitespace-nowrap text-left">
+                  <span className=" cursor-pointer me-2">❌</span>
+                  <span className=" mx-2 cursor-pointer">✒️</span>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

@@ -1,6 +1,6 @@
 import Book from "../model/book.model.js";
 
-//
+// add new book
 const handleBookStoreController = async (req, res) => {
   try {
     const body = req.body;
@@ -19,6 +19,7 @@ const handleBookStoreController = async (req, res) => {
     }
 
     const bookAdd = await Book.insertOne(body);
+    console.log("book added successfully ",bookAdd)
     if (bookAdd) {
       return res.status(201).json({
         message: "Data created successfully",

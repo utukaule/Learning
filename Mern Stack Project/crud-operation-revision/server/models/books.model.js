@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
 // creating model
 
@@ -22,7 +22,6 @@ const bookShema = new mongoose.Schema(
     },
     PublishDate: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true }
