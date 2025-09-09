@@ -1,0 +1,7 @@
+ 1.how to set cookie
+ 2.bcrypt kaise use karte hai for passowrd encyption and decryption
+ 3.jwt kya hai aur data kese save kare aur kese bahar nikale
+
+
+
+pass:- $2b$10$/9DHlQ8DY4aCeUrpGOmBheL0VTSjvdoX.q1uXq65zT5GbapPyU/aO
