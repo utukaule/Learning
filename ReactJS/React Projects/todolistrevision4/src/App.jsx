@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [input, setInput] = useState("");
+  const [todoList, setTodoList] = useState([]);
+  const handleTodo = () => {
+    const payload = {
+      id: todoList.length + 1,
+      text: input,
+      inCompelte: false,
+    };
+    setTodoList([...todoList, payload]);
+    setInput("");
+  };
 
+  // handle check
+  const handleComplete = (id) => {
+    setTodoList(
+      todoList.map((item) => {
+        if (item.id == id) {
+          return {
+            ...item,
+            inCompelte: !item.inCompelte,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+  };
+
+  // handle Delete
+  const handleDelete = (id) => {
+    setTodoList(todoList.filter((item) => item.id !== id));
+  };
   return (
-    <>
+    <div>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <input
+          type="text"
+          placeholder="enter todo"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button onClick={handleTodo}>Add todo</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div>
+        <ul>
+          {todoList.map((todo) => {
+            return (
+              <li key={todo.id}>
+                <span>
+                  <input
+                    type="checkbox"
+                    onClick={() => handleComplete(todo.id)}
+                    checked={todo.inCompelte}
+                  />
+                </span>
+                <span className={todo.inCompelte ? "line" : ""}>
+                  {" "}
+                  {todo.text}
+                </span>
+                <span>
+                  <button onClick={() => handleDelete(todo.id)}>Delete</button>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
