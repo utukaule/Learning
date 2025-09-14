@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { LOGO } from "../utilities/constants";
 import "./Header.css";
+import { Link } from "react-router-dom";
 const Header = () => {
   const [login, setLogin] = useState("Login");
+  const header = {
+    paddingLeft:"10px",
+    textDecoration:"none", 
+    color:"black",
+    cursor:"pointer"
 
+  }
   return (
     <div className="header">
       <div className="logo">
@@ -11,10 +18,10 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
+          <Link style={header} to={'/'}>Home</Link>
+          <Link style={header} to={"/about"}>About</Link>
+          <Link style={header} to={"/contact"}>Contact</Link>
+          <Link style={header} to={"/Cart"}>Cart</Link>
           <button
             className="login"
             onClick={() =>

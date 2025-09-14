@@ -2,13 +2,14 @@ import RestaurantCard from "./RestaurantCard";
 import "./Body.css";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 // import { resData } from "../mocdata";
 
 // whenever the state variable updates react re-renders the component
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filterRestaurant, setFilterRestaurant] = useState([])
+  const [filterRestaurant, setFilterRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
   console.log("rerender");
   useEffect(() => {
@@ -21,13 +22,15 @@ const Body = () => {
     );
     const json = await data.json();
     // console.log("result",json)
-    // console.log(
-    //   json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    // );
+    console.log(
+      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    );
     setListOfRestaurants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFilterRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFilterRestaurant(
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   return listOfRestaurants === "" ? (
@@ -50,7 +53,7 @@ const Body = () => {
               const filteredRestaurants = listOfRestaurants.filter((e) =>
                 e.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setFilterRestaurant(filteredRestaurants)
+              setFilterRestaurant(filteredRestaurants);
             }}
           >
             Search
@@ -60,9 +63,9 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             let filteredData = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4.3
+              (res) => res.info.avgRating > 4.5
             );
-            setListOfRestaurants(filteredData);
+            setFilterRestaurant(filteredData);
           }}
         >
           Top Restaurants
@@ -70,7 +73,11 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filterRestaurant.map((restaurant) => {
-          return <RestaurantCard key={restaurant.info.id} data={restaurant} />;
+          return (
+            <Link key={restaurant.info.id} to={"/restaurants/"+restaurant.info.id}>
+              <RestaurantCard  data={restaurant} />;
+            </Link>
+          );
         })}
       </div>
     </div>
