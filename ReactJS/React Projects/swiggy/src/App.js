@@ -5,6 +5,16 @@ import Error from "./components/Error";
 import Header from "./components/Header";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
+// import Grocery from "./components/Grocery";
+import { lazy, Suspense } from "react";
+import Shimmer from "./components/Shimmer";
+
+// chunking
+// code splitting
+// dynamic bundling
+const Grocery = lazy(() => import("./components/Grocery"));
+// for above 3 things (all are same just name is diff.)
+// we will use lazy loading also know as "on demand loading".
 
 function App() {
   return (
@@ -45,6 +55,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

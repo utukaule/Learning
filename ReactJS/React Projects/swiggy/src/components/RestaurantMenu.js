@@ -2,31 +2,20 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utilities/constants";
-const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-  const [listOfMenu, setListOfMenu] = useState(null);
+import useRestaurantMenu from "../utilities/useRestaurantMenu.js";
+import useRestaurantListMenu from "../utilities/useRestaurantListMenu.js";
 
+const RestaurantMenu = () => {
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  // this custom hook is used to display restaurant name and product cost and rating of paticulat restaurant.
+  const resInfo = useRestaurantMenu(resId);
 
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-    // console.log(json.data.cards);
-    setResInfo(json?.data?.cards[2]?.card?.card?.info);
-    // console.log(json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card)
-    setListOfMenu(
-      json.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card
-        .itemCards
-    );
-  };
+  // this custom hook is used to display menu related to that particular product or restaurant.
+  const listOfMenu = useRestaurantListMenu(resId);
 
   if (resInfo === null || listOfMenu === null) return <Shimmer />;
 
-  console.log("list of menu is:- ", listOfMenu);
   return (
     <div>
       <h1>{resInfo.name}</h1>
