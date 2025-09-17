@@ -1,18 +1,20 @@
-import About from "./components/About";
+// import About from "./components/About";
 import Body from "./components/Body";
-import Contact from "./components/Contact";
+// import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Header from "./components/Header";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocery from "./components/Grocery";
 import { lazy, Suspense } from "react";
-import Shimmer from "./components/Shimmer";
+// import Shimmer from "./components/Shimmer";
 
 // chunking
 // code splitting
 // dynamic bundling
+const About = lazy(()=>import('./components/About'))
 const Grocery = lazy(() => import("./components/Grocery"));
+const Contact = lazy(()=>import("./components/Contact"))
 // for above 3 things (all are same just name is diff.)
 // we will use lazy loading also know as "on demand loading".
 

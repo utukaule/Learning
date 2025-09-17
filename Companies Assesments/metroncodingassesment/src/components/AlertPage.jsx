@@ -13,13 +13,12 @@ const AlertPage = () => {
   return (
     <>
       <h1 className="text-red-500 text-3xl px-5">Alerts</h1>
-      <input
+      {/* <input
         type="text"
         className="border border-black p-3 mx-5 font-3xl w-[20%] mt-4"
         placeholder="Search"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
+        
+      /> */}
 
       <div>
         {alerts.map((item) => {
