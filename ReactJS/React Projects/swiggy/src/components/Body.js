@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withTopQuality } from "./RestaurantCard";
 import "./Body.css";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
@@ -13,6 +13,11 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filterRestaurant, setFilterRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  // const RestaurantCardWithRatingAboveFive = withTopQuality(RestaurantCard);
+  const RestaurantCardWithRatingAboveFourPointFour =
+    withTopQuality(RestaurantCard);
+
   console.log("rerender");
   useEffect(() => {
     fetchData();
@@ -24,9 +29,9 @@ const Body = () => {
     );
     const json = await data.json();
     // console.log("result",json)
-    console.log(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
-    );
+    // console.log(
+    //   json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+    // );
     setListOfRestaurants(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -69,18 +74,17 @@ const Body = () => {
           </button>
         </div>
         <div className="search my-4 p-4 flex item-center">
-
-        <button
-          className="px-4 py-1 bg-gray-100"
-          onClick={() => {
-            let filteredData = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4.5
-            );
-            setFilterRestaurant(filteredData);
-          }}
-        >
-          Top Restaurants
-        </button>
+          <button
+            className="px-4 py-1 bg-gray-100"
+            onClick={() => {
+              let filteredData = listOfRestaurants.filter(
+                (res) => res.info.avgRating > 4.5
+              );
+              setFilterRestaurant(filteredData);
+            }}
+          >
+            Top Restaurants
+          </button>
         </div>
       </div>
       <div className="flex flex-wrap">
@@ -90,7 +94,18 @@ const Body = () => {
               key={restaurant.info.id}
               to={"/restaurants/" + restaurant.info.id}
             >
-              <RestaurantCard data={restaurant} />;
+              {/*  if the restaurant is having rating above 4.5 then it will show "top" */}
+              {/* {restaurant.info.avgRating > 4.3 ? (
+                <RestaurantCardWithRatingAboveFive data={restaurant}  />
+              ) : (
+                <RestaurantCard data={restaurant} />
+              )} */}
+
+              {restaurant.info.avgRating > 4.4 ? (
+                <RestaurantCardWithRatingAboveFourPointFour data={restaurant} />
+              ) : (
+                <RestaurantCard data={restaurant} />
+              )}
             </Link>
           );
         })}
