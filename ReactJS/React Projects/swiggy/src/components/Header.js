@@ -1,42 +1,42 @@
 import { useState } from "react";
 import { LOGO } from "../utilities/constants";
-import "./Header.css";
+
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utilities/useOnlineStatus";
 const Header = () => {
   const online = useOnlineStatus();
   const [login, setLogin] = useState("Login");
-  const header = {
-    paddingLeft: "10px",
-    textDecoration: "none",
-    color: "black",
-    cursor: "pointer",
-  };
+
   return (
-    <div className="header">
-      <div className="logo">
-        <img src={LOGO} alt="" />
+    <div className="flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-100">
+      <div className="">
+        <img className="w-20" src={LOGO} alt="" />
       </div>
-      <div className="nav-items">
-        <ul>
-          <Link to={"/"}>{online ? "🟢" : "🔴"}</Link>
-          <Link style={header} to={"/"}>
-            Home
-          </Link>
-          <Link style={header} to={"/about"}>
-            About
-          </Link>
-          <Link style={header} to={"/contact"}>
-            Contact
-          </Link>
-          <Link style={header} to={"/grocery"}>
-            Grocery
-          </Link>
-          <Link style={header} to={"/Cart"}>
-            Cart
-          </Link>
+      <div className="flex items-center">
+        <ul className="flex p-4 m-4">
+          <li className="px-1">
+            <Link to={"/"}>{online ? "🟢" : "🔴"}</Link>
+          </li>
+          <li className="px-1">
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li className="px-1">
+            {" "}
+            <Link to={"/about"}>About</Link>
+          </li>
+          <li className="px-1">
+            {" "}
+            <Link to={"/contact"}>Contact</Link>
+          </li>
+          <li className="px-1">
+            <Link to={"/grocery"}>Grocery</Link>
+          </li>
+          <li className="px-1">
+            <Link to={"/Cart"}>Cart</Link>
+          </li>
+
           <button
-            className="login"
+            className="px-2 py-1 border border-black rounded bg-black text-white"
             onClick={() =>
               login === "Login" ? setLogin("Logout") : setLogin("Login")
             }

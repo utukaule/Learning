@@ -10,13 +10,13 @@ const RestaurantCard = (props) => {
   
 
   return (
-    <div className="res-card">
+    <div className="m-4 p-4 w-[250px] bg-gray-100 hover:bg-gray-200 hover:shadow-lg rounded-lg">
       <img
         src={SWIGGY_IMAGE_PATH+cloudinaryImageId}
-        className="res-logo"
+        className="rounded-lg"
         alt="" 
       />
-      <h3>{name}</h3>
+      <h3 className="font-bold text-xl py-3">{name}</h3>
       <h4>
         {cuisines.join(", ")}
       </h4>
