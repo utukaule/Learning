@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { SWIGGY_IMAGE_PATH } from "../utilities/constants";
 
 const ItemList = ({ items }) => {
-  console.log("each item", items);
+  // console.log("each item", items);
   return (
     <div>
       {items.map((item) => (
@@ -26,7 +26,7 @@ const ItemList = ({ items }) => {
           </div>
           <div className="w-3/12 ">
             <div className="absolute">
-              <button className="p-2 shadow-lg m-auto rounded-lg mx-16 bg-black text-white">
+              <button className="p-2 rounded-lg mx-16 bg-black text-white">
                 Add +
               </button>
             </div>

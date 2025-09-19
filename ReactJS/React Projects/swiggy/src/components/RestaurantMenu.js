@@ -8,6 +8,7 @@ import RestaurantCategory from "./RestaurantCategory.js";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+  const [showIndex, setShowIndex] = useState(null)
 
   // this custom hook is used to display restaurant name and product cost and rating of paticulat restaurant.
   const resInfo = useRestaurantMenu(resId);
@@ -27,9 +28,17 @@ const RestaurantMenu = () => {
         {resInfo.cuisines.join(", ")}-{resInfo.costForTwoMessage}
       </p>
       {/* Catagories accordian  */}
-      {listOfMenu.map((category) => {
-            return <RestaurantCategory data={category?.card?.card} />;
-          })}
+      {listOfMenu.map((category,index) => {
+        return (
+          // controlled component because parent is controlling the category
+          <RestaurantCategory
+            key={category.card.card.title}
+            data={category?.card?.card}
+            showItem = {index === showIndex ? true :false}
+            setShowIndex= {()=>setShowIndex(index)}
+          />
+        );
+      })}
     </div>
   );
 };
