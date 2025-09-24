@@ -18,7 +18,7 @@ const Body = () => {
   const RestaurantCardWithRatingAboveFourPointFour =
     withTopQuality(RestaurantCard);
 
-  console.log("rerender");
+  // console.log("rerender");
   useEffect(() => {
     fetchData();
   }, []);
@@ -63,7 +63,7 @@ const Body = () => {
           <button
             className=" mx-2 px-4 py-1 bg-green-100 rounded"
             onClick={() => {
-              console.log(searchText);
+              // console.log(searchText);
               const filteredRestaurants = listOfRestaurants.filter((e) =>
                 e.info.name.toLowerCase().includes(searchText.toLowerCase())
               );

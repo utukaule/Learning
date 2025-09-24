@@ -9,7 +9,7 @@ const Header = () => {
   const [login, setLogin] = useState("Login");
 
   const {loggedInUser} = useContext(UserContext)
-  console.log(loggedInUser)
+  // console.log(loggedInUser)
 
   return (
     <div className="flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-100">
