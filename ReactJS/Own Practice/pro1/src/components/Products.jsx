@@ -34,7 +34,7 @@ const Products = () => {
         <div className="flex ">
           <input
             type="text"
-            className="border border-black rounded w-[100%] text-2xl"
+            className="border border-black rounded w-[100%] text-2xl p-2"
             placeholder="Find Product"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
