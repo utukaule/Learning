@@ -6,21 +6,33 @@ import Header from "./components/Header";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocery from "./components/Grocery";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+import UserContext from "./utilities/UserContext";
 // import Shimmer from "./components/Shimmer";
 
 // chunking
 // code splitting
 // dynamic bundling
-const About = lazy(()=>import('./components/About'))
+const About = lazy(() => import("./components/About"));
 const Grocery = lazy(() => import("./components/Grocery"));
-const Contact = lazy(()=>import("./components/Contact"))
+const Contact = lazy(() => import("./components/Contact"));
 // for above 3 things (all are same just name is diff.)
 // we will use lazy loading also know as "on demand loading".
 
 function App() {
+  const [userName, setUserName] = useState();
+
+  // authentication
+
+  useEffect(() => {
+    const data = {
+      name: "akshay kaule",
+    };
+    setUserName(data.name);
+  }, []);
+
   return (
-    <>
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
       <div className="app">
         <Header />
         {/* 
@@ -31,7 +43,7 @@ function App() {
         */}
         <Outlet />
       </div>
-    </>
+    </UserContext.Provider>
   );
 }
 

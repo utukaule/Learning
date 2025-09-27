@@ -1,9 +1,10 @@
 import RestaurantCard, { withTopQuality } from "./RestaurantCard";
 import "./Body.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utilities/useOnlineStatus";
+import UserContext from "../utilities/UserContext";
 
 // import { resData } from "../mocdata";
 
@@ -41,6 +42,8 @@ const Body = () => {
   };
 
   const onlineStatus = useOnlineStatus();
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   if (onlineStatus === false) {
     return (
       <h1>Looks like you're offline! Please check your internet connection.</h1>
@@ -52,6 +55,7 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="flex  ">
+        {/* input and search */}
         <div className="search m-4 p-4">
           <input
             type="text"
@@ -73,6 +77,7 @@ const Body = () => {
             Search
           </button>
         </div>
+        {/* top rated restaurent */}
         <div className="search my-4 p-4 flex item-center">
           <button
             className="px-4 py-1 bg-gray-100"
@@ -85,6 +90,20 @@ const Body = () => {
           >
             Top Restaurants
           </button>
+        </div>
+        {/* input box to change the username... */}
+        <div className="search  m-4 p-4 flex items-center">
+          <label for="input" htmlFor="">
+            {" "}
+            Username:{" "}
+          </label>
+          <input
+            type="text"
+            id="input"
+            className="border border-black rounded"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
       <div className="flex flex-wrap">
