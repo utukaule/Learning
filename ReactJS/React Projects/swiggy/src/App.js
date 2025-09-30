@@ -19,6 +19,10 @@ const Contact = lazy(() => import("./components/Contact"));
 // for above 3 things (all are same just name is diff.)
 // we will use lazy loading also know as "on demand loading".
 
+// Provider is a bridge in between the store and the application
+import { Provider } from "react-redux";
+import appStore from "./utilities/appStore";
+
 function App() {
   const [userName, setUserName] = useState();
 
@@ -32,18 +36,20 @@ function App() {
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <div className="app">
-        <Header />
-        {/* 
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          {/* 
           * outlet is like tunnel. 
           * Outlet sees the route and finds out the component 
-            and renders that component
+          and renders that component
           * the component replaces itself with outlet
-        */}
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+          */}
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 }
 
