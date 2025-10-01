@@ -93,9 +93,9 @@ const Body = () => {
         </div>
         {/* input box to change the username... */}
         <div className="search  m-4 p-4 flex items-center">
-          <label for="input" htmlFor="">
-            {" "}
-            Username:{" "}
+          <label for="input" >
+         
+            Username:
           </label>
           <input
             type="text"

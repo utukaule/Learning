@@ -1,9 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import { SWIGGY_IMAGE_PATH } from "../utilities/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utilities/cartSlice";
 
 const ItemList = ({ items }) => {
   // console.log("each item", items);
+
+  const dispatch = useDispatch();
+  const handleAddItem = () => {
+    // dispatch and action
+    dispatch(addItem("pizza"));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -26,7 +33,12 @@ const ItemList = ({ items }) => {
           </div>
           <div className="w-3/12 ">
             <div className="absolute">
-              <button className="p-2 rounded-lg mx-16 bg-black text-white">
+              <button
+                className="p-2 rounded-lg mx-16 bg-black text-white"
+                 
+                onClick={() => handleAddItem(item)}
+                
+              >
                 Add +
               </button>
             </div>
